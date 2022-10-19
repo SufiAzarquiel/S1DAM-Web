@@ -1,0 +1,307 @@
+/*
+  @author Sufian
+  Colors obtained here: "https://www.canva.com/colors/color-wheel/"
+*/
+
+body {
+  /* background-color: cornsilk; */
+  padding: 0;
+  margin: 0;
+  background-image: url("../Img/Pattern.png");
+  background-size: auto;
+}
+
+.container {
+  background-color: #edbc64;
+  /* Complementary to container color */
+  width: 90%;
+  margin: 50px auto;
+  border-radius: 25px;
+}
+
+header {
+  background-color: rgb(95, 173, 86);
+  height: 150px;
+  border-radius: 25px 25px 0px 0px;
+  background-image: url("../Img/header.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* #principal {} */
+
+nav {
+  width: 20%;
+  float: left;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  background-color: aliceblue;
+  color: #7864ed;
+  /* Analogous to container color */
+  padding: 23px;
+  text-align: center;
+  font-family: Verdana;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+nav ul li:hover {
+  background-color: lightgray;
+  color: rgb(0, 0, 0);
+}
+
+#content {
+  background-color: cornflowerblue;
+  border-radius: 0px 0px 0px 25px;
+  width: 80%;
+  float: right;
+}
+
+a {
+  text-decoration: none;
+  padding: 0;
+}
+
+.txt-center {
+  text-align: center;
+}
+
+.txt-noPadding {
+  padding: 0;
+}
+
+.tag {
+  color: #edbc64;
+  font-size: x-large;
+}
+
+.tag::before {
+  content: "<";
+}
+
+.tag::after {
+  content: ">";
+}
+
+.txt-highlight {
+  color: #edbc64;
+  font-size: x-large;
+}
+
+.tab {
+  margin-left: 40px;
+}
+
+.cb {
+  clear: both;
+}
+
+#home {
+  text-align: center;
+}
+
+#home button {
+  margin: 10px auto 0 auto;
+  padding: 10px 50px;
+}
+
+#genCount {
+  margin: 10px auto 0px auto;
+  padding: 0px;
+}
+
+canvas {
+  margin: 10px;
+  padding: 0px;
+}
+
+#parrafos {
+  padding: 0 30px;
+  font-size: large;
+}
+
+.ejemplo-div {
+  background-color: lightcoral;
+  margin: 20px;
+  padding: 20px;
+  width: fit-content;
+}
+
+#enlaces {
+  padding: 0 40px;
+  font-size: large;
+}
+
+#listas {
+  padding-left: 30px;
+}
+
+ul.ul-custom li {
+  list-style-type: square;
+}
+
+ul.ul-custom li li {
+  list-style-type: disc;
+}
+
+ul.ul-custom li li li {
+  list-style-type: circle;
+}
+
+ol.ol-custom li {
+  list-style-type: decimal;
+}
+
+ol.ol-custom li li {
+  list-style-type: lower-latin;
+}
+
+ol.ol-custom-img li li {
+  list-style-type: none;
+  list-style-image: url("../Img/gearmedium.png");
+}
+
+ol.ol-custom li li li {
+  list-style-type: disc;
+  list-style-image: none;
+}
+
+ol.ol-custom-img li li li {
+  list-style-type: upper-roman;
+  list-style-image: none;
+}
+
+.definicion {
+  font-size: x-large;
+  color: red;
+  font-weight: bold;
+}
+
+table {
+  margin: 0 auto;
+  background-color: white;
+}
+
+table,
+table th,
+table td {
+  border: 2px solid black;
+}
+
+table.RedTable th {
+  background-color: rgb(75, 21, 21);
+  color: rgb(252, 145, 145);
+  font-weight: bold;
+  font-size: 30px;
+}
+
+table.RedTable td {
+  background-color: rgb(252, 145, 145);
+  color: rgb(75, 21, 21);
+}
+
+table.BlueTable,
+table.BlueTable th,
+table.BlueTable td {
+  background-color: darkcyan;
+  color: rgb(122, 226, 226);
+}
+
+table.StripedTable tr:nth-child(even) {
+  background-color: rgb(102, 51, 32);
+  color: rgb(255, 168, 136);
+}
+
+table.StripedTable tr:nth-child(odd) {
+  background-color: rgb(255, 168, 136);
+  color: rgb(102, 51, 32);
+}
+
+table.Horario,
+table.Horario th,
+table.Horario td {
+  border: 1px solid black;
+}
+table.Horario th,
+table.Horario td {
+  padding: 4px;
+}
+
+table.Horario {
+  font-family: Arial;
+  width: 85%;
+  margin-bottom: 50px;
+}
+
+table.Horario th {
+  background-color: white;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(4, 158, 94);
+}
+
+table.Horario th.Titulo {
+  background-color: white;
+  font-style: italic;
+  font-size: 25px;
+}
+
+table.Horario th.Dia {
+  background-color: white;
+  font-weight: normal;
+}
+
+table.Horario td {
+  text-align: center;
+}
+
+.Prog {
+  background-color: #ffd231;
+}
+.Lmsg {
+  background-color: #037dff;
+}
+.Ing {
+  background-color: #97db98;
+}
+.Ende {
+  background-color: #bc7879;
+}
+.Bdd {
+  background-color: #7ffffe;
+}
+.Fol {
+  background-color: #c9a0c8;
+}
+.Sisi {
+  background-color: #00b95c;
+}
+.Recreo {
+  height: 20px;
+}
+#boldTxt {
+  height: 20px;
+  font-weight: bold;
+}
+
+footer {
+  border-radius: 0px 0px 25px 25px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+}
+
+footer li {
+  padding: 5px;
+  list-style-type: none;
+  text-align: center;
+  font-size: xx-large;
+  font-weight: bold;
+}
