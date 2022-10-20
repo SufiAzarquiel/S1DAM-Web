@@ -20,10 +20,12 @@ var bgRect = { x: 0, y: 0, w: 640, h: 640 };
 
 // Spiral variables
 var step = 0;
+var dir = 0;
+var dirLen = 1;
 // Step size
 const dS = 30;
 // Length of the spiral
-const spiralLength = 3;
+const spiralLength = 9;
 var spiral = new Array(length);
 
 // Set starting position at center of canvas
@@ -126,11 +128,43 @@ function main() {
   for (let i = 0; i < spiralLength; i++) {
     // If current position on the spiral is not empty
     if (spiral[i] == 1) {
-      // Calculate (x, y) position of the circle to be drawn
+      /*// Calculate (x, y) position of the circle to be drawn
       x = cX + i * dS;
       y = cY + i * dS;
+      */
+
+      // Calculate next position based on direction
+      switch (dir) {
+        case 0: // Move to the right
+          x = cX + i * dS;
+          break;
+        case 1: // Move down
+          y = cY + i * dS;
+          break;
+        case 2: // Move to the left
+          x = cX - i * dS;
+          break;
+        case 3: // Move up
+          y = cY - i * dS;
+          break;
+        default:
+          break;
+      }
       drawCircle(x, y);
       drawLine(x, y, px, py);
+
+      // Calculate direction of the next step
+      changeDir = 0;
+      if(step%dirLen == changeDir) {
+        dir++;
+        dir %= 4;
+        changeDir++;
+      }
+      if(changeDir == 2) {
+        changeDir = 0;
+        dirLen++;
+      }
+
       // Set previous point to be this point after completing the drawing step
       px = x;
       py = y;
@@ -170,6 +204,8 @@ function reset() {
 
   // Reset spiral values to 0
   spiral = clearSpiral(spiral);
+  dirLen = 1;
+  changeDir = 0;
 
   // Reset the counter for generations
   timer = 0;
