@@ -18,40 +18,40 @@ var g = canvas.getContext("2d");
 var bgColor = "#69fd9a";
 var bgRect = { x: 0, y: 0, w: 640, h: 640 };
 
-// Spiral variables
-var step = 0;
-var dir = 0;
-var dirLen = 1;
-// Step size
-const dS = 30;
-// Length of the spiral
-const spiralLength = 9;
-var spiral = new Array(length);
-
 // Set starting position at center of canvas
 const cX = canvas.width / 2;
 const cY = canvas.height / 2;
 
+// Spiral variables
+var step = 0;
+var dir = -1;
+var stepsInDir = 1;
+var timesTurned = 0;
+var stepsToTake = 1;
+// Step size
+const dS = 30;
+// Length of the spiral
+const spiralLength = 24;
+
 // Current position on the spiral
-var x = 0;
-var y = 0;
+var x = cX;
+var y = cY;
 
 // Previous position on the spiral
-var px = 0;
-var py = 0;
+var px = cX;
+var py = cY;
 
 // Circle constants
 const circleRad = 10;
 const circleColor = "#000000";
 
 // Variables for a timer that keeps track of the current step in the loop
-var timer = 0;
-var gen = 0;
+var gen = "";
 
 // Delay between every step on the loop
 const loopDelay = 100;
 // Main loop
-var loopInterval;
+var loopInterval = null;
 
 // Function for drawing rectangles to the screen
 function fillRect(r, color) {
@@ -88,102 +88,88 @@ function drawLine(x1, y1, x2, y2) {
   g.stroke();
 }
 
-// Set all the values of the spiral to be 0
-function clearSpiral(arr) {
-  // Assign all values in spiral to 0
-  for (let i = 0; i < spiralLength; i++) {
-    arr[i] = 0;
-  }
-  return arr;
-}
-
 // Initialize program before entering loop
 // Set font for the text used
 g.font = "20px Georgia";
 
-// Draw starting screen
+// Draw starting screcXn
 fillRect(bgRect, bgColor);
-
-// Set initial state
-px = cX;
-py = cY;
-
-// Initialize the spiral
-spiral = clearSpiral(spiral);
 
 // Enter game loop
 function main() {
-  // Draw the background
-  fillRect(bgRect, bgColor);
-
-  // Go to next position if we aren't at the end of the spiral
-  if (step < spiralLength) {
-    // Set current position in the spiral to be drawn
-    spiral[step] = 1;
-    step++;
+  // One step less left until we have to turn
+  stepsInDir--;
+  // Update direction
+  if(stepsInDir == 0){
+    dir++;
+    dir %= 4;
   }
 
-  // Draw the current state of the spiral
-  // Iterate through all elements in spiral
-  for (let i = 0; i < spiralLength; i++) {
-    // If current position on the spiral is not empty
-    if (spiral[i] == 1) {
-      /*// Calculate (x, y) position of the circle to be drawn
-      x = cX + i * dS;
-      y = cY + i * dS;
-      */
+  // Calculate next position based on direction
+  switch (dir) {
+    case 0: // Move to the right
+      x = x + dS;
+      break;
+    case 1: // Move up
+      y = y - dS;
+      break;
+    case 2: // Move to the left
+      x = x - dS;
+      break;
+    case 3: // Move down
+      y = y + dS;
+      break;
+    default:
+      break;
+  }
 
-      // Calculate next position based on direction
-      switch (dir) {
-        case 0: // Move to the right
-          x = cX + i * dS;
-          break;
-        case 1: // Move down
-          y = cY + i * dS;
-          break;
-        case 2: // Move to the left
-          x = cX - i * dS;
-          break;
-        case 3: // Move up
-          y = cY - i * dS;
-          break;
-        default:
-          break;
-      }
-      drawCircle(x, y);
-      drawLine(x, y, px, py);
+  // Draw a point on new position
+  drawCircle(x, y);
+  // Draw a line from new position to previous one
+  drawLine(x, y, px, py);
 
-      // Calculate direction of the next step
-      changeDir = 0;
-      if(step%dirLen == changeDir) {
-        dir++;
-        dir %= 4;
-        changeDir++;
-      }
-      if(changeDir == 2) {
-        changeDir = 0;
-        dirLen++;
-      }
+  // Set previous point to be this point after completing the drawing step
+  px = x;
+  py = y;
 
-      // Set previous point to be this point after completing the drawing step
-      px = x;
-      py = y;
+  // If its time to turn, do:
+  if (stepsInDir == 0) {
+    // Add one to the times we have turned
+    timesTurned++;
+    // Reset the steps we need to take in a direction before turning
+    stepsInDir = stepsToTake;
+    // If we have already turned twice, 
+    if (timesTurned % 2 == 0) {
+      // Make the steps we have to take in the new direction one unit longer
+      stepsToTake++;
     }
   }
+  // Log current direction and step
+  console.log("dir: ", dir);
+
+  // Go to next step
+  step++;
+  console.log("step: ", step);
 
   // Keep track of the current step on the screen.
-  timer++;
-  gen = "Generation: " + timer.toString();
+  gen = "Step: " + (step+1).toString();
   document.getElementById("genCount").innerHTML = gen;
+
+  // If we are at the end of the spiral stop the loop
+  if (step >= spiralLength) {
+    stopLoop();
+  }
 }
 
 // Stop loop on any state
-function stop() {
+function stopLoop() {
   clearInterval(loopInterval);
 }
 
 // Start loop if it hasn't been started yet
 function start() {
+  // Draw circle at starting position
+  drawCircle(cX, cY);
   if (loopInterval != null) {
     clearInterval(loopInterval);
   }
@@ -200,15 +186,13 @@ function reset() {
   y = cY;
   px = cX;
   py = cY;
+  dir = -1;
+  stepsInDir = 1;
+  timesTurned = 0;
+  stepsToTake = 1;
+
+  // Reset the counter for steps
   step = 0;
-
-  // Reset spiral values to 0
-  spiral = clearSpiral(spiral);
-  dirLen = 1;
-  changeDir = 0;
-
-  // Reset the counter for generations
-  timer = 0;
-  gen = "Generation: " + timer.toString();
+  gen = "Step: " + step.toString();
   document.getElementById("genCount").innerHTML = gen;
 }
