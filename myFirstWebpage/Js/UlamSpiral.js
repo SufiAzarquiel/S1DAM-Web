@@ -27,7 +27,12 @@ const cX = canvas.width / 2;
 const cY = canvas.height / 2;
 var x = 0;
 var y = 0;
-const circleRad = 20;
+var px = 0;
+var py = 0;
+
+// Circle constants
+const circleRad = 10;
+const circleColor = "#000000";
 
 // Keep track of current frame
 g.font = "20px Georgia";
@@ -49,34 +54,61 @@ fillRect(bgRect, bgColor);
 // Set initial state
 x = cX;
 y = cY;
+px = cX;
+py = cY;
 dS = 30;
+
+// Function for drawing a circle at a given position
+function drawCircle(x, y) {
+  // Draw arc at x, y
+  g.beginPath(); // Create a new line
+  g.arc(x, y, circleRad, 0, 2 * Math.PI, true); // Line is arc at x, y
+
+  // Set color for the inside of the circle
+  g.fillStyle = circleColor;
+  g.fill();
+
+  // Set width and color for the surrounding circumference
+  g.lineWidth = 3;
+  g.strokeStyle = circleColor;
+  g.stroke();
+}
+
+// Function for drawing a line from point x, y to point px, py
+function drawLine(x1, y1, x2, y2) {
+  // Create the line
+  g.beginPath();
+  g.moveTo(x1, y1);
+  g.lineTo(x2, y2);
+
+  // Set line width and color
+  g.lineWidth = 3;
+  g.strokeStyle = circleColor;
+  g.stroke();
+}
 
 // Enter game loop
 function main() {
   // Draw the background
   fillRect(bgRect, bgColor);
 
-  // Update spiral
+  // Update position with a condition
   if (step < length) {
-    // Draw text arc at x, y
-    g.beginPath();
-    g.arc(x, y, circleRad, 2 * Math.PI, Math.PI / 2, true);
-    g.lineWidth = 3;
-    g.strokeStyle = "#FF0000";
-    g.stroke();
-
     // Update x and y
     x += dS;
     y += dS;
     step++;
-  } else {
-    // Draw text arc at x, y
-    g.beginPath();
-    g.arc(x, y, circleRad, 2 * Math.PI, Math.PI / 2, true);
-    g.lineWidth = 3;
-    g.strokeStyle = "#FF0000";
-    g.stroke();
   }
+
+  // Draw a circle to the screen
+  drawCircle(x, y);
+
+  // Draw line from current point to previous point
+  drawLine(x, y, px, py);
+
+  // Set previous point to be this point after completing the drawing step
+  px = x;
+  py = y;
 
   // Keep track of the current step on the screen.
   timer++;
@@ -89,6 +121,9 @@ function stop() {
 }
 
 function start() {
+  if (loopInterval != null) {
+    clearInterval(loopInterval);
+  }
   loopInterval = setInterval(main, loopDelay);
 }
 
@@ -100,6 +135,9 @@ function reset() {
   // Reset x and y values
   x = cX;
   y = cY;
+  px = cX;
+  py = cY;
+  step = 0;
 
   // Reset the counter for generations
   timer = 0;
