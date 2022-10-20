@@ -60,12 +60,12 @@ for (let i = 0; i < gridCols; i++) {
 var timer = 0;
 var gen = 0;
 
-var myInterval;
+var loopInterval;
 // Draw the background and the grid
 fillRect(bgRect, bgColor);
 
 // Enter game loop
-function game() {
+function main() {
   // Draw the background and the grid
   fillRect(bgRect, bgColor);
   drawScene(grid);
@@ -104,11 +104,11 @@ function game() {
 }
 
 function stop() {
-  clearInterval(myInterval);
+  clearInterval(loopInterval);
 }
 
 function start() {
-  myInterval = setInterval(game, 10);
+  loopInterval = setInterval(main, 10);
 }
 
 function reset() {
