@@ -108,6 +108,9 @@ function stop() {
 }
 
 function start() {
+  if (loopInterval != null) {
+    clearInterval(loopInterval);
+  }
   loopInterval = setInterval(main, 10);
 }
 
