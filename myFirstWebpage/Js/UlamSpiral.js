@@ -10,13 +10,14 @@
 // Set canvas
 "use strict";
 var canvas = document.querySelector("canvas");
-canvas.width = 640;
-canvas.height = 640;
+const canSize = 640;
+canvas.width = canSize;
+canvas.height = canSize;
 var g = canvas.getContext("2d");
 
 // Rectangle for drawing canvas background
 var bgColor = "#69fd9a";
-var bgRect = { x: 0, y: 0, w: 640, h: 640 };
+var bgRect = { x: 0, y: 0, w: canSize, h: canSize };
 
 // Set starting position at center of canvas
 const cX = canvas.width / 2;
@@ -28,9 +29,12 @@ var dir = 0;
 var stepsInDir = 1;
 var timesTurned = 0;
 // Step size
-const dS = 40;
-// Length of the spiral
-const spiralLength = 24;
+const dS = 10;
+// Columns and rows on the spiral
+const cols = canvas.width / dS;
+const rows = canvas.height / dS;
+// Length of the spiral, adjusting to canvas size
+const spiralLength = cols*rows - rows*2 + 1;
 
 // Current position on the spiral
 var x = cX;
@@ -47,7 +51,7 @@ const circleColor = "#000000";
 var gen = "";
 
 // Delay between every step on the loop
-const loopDelay = 100;
+const loopDelay = 1;
 // Main loop
 var loopInterval = null;
 
@@ -81,7 +85,7 @@ function drawLine(x1, y1, x2, y2) {
   g.lineTo(x2, y2);
 
   // Set line width and color
-  g.lineWidth = 3;
+  g.lineWidth = 1;
   g.strokeStyle = circleColor;
   g.stroke();
 }
@@ -149,12 +153,12 @@ function main() {
       stepsInDir++;
     }
   }
-  // Go to next step
-  step++;
-
   // Keep track of the current step on the screen.
   gen = "Step: " + step.toString();
   document.getElementById("genCount").innerHTML = gen;
+
+  // Go to next step
+  step++;
 
   // If we are at the end of the spiral stop the loop
   if (step > spiralLength) {
