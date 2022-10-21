@@ -8,7 +8,7 @@ var g = canvas.getContext("2d");
 g.font = "20px Georgia";
 
 var bgColor = "#69fd9a";
-var bgRect = { x: 0, y: 0, w: 640, h: 640 };
+var bgRect = { x: 0, y: 0, w: canvas.width, h: canvas.height };
 
 var resolution = 16; // Number of squares on the grid
 var gridRect = {
@@ -63,12 +63,12 @@ var gen = 0;
 var loopInterval;
 // Draw the background and the grid
 fillRect(bgRect, bgColor);
+drawScene(grid);
 
 // Enter game loop
 function main() {
   // Draw the background and the grid
   fillRect(bgRect, bgColor);
-  drawScene(grid);
 
   // Update background
   nextGrid = new2D_Array(gridCols, gridRows);
@@ -95,35 +95,85 @@ function main() {
       neighbors = 0;
     }
   }
+  
   grid = nextGrid;
+  drawScene(grid);
 
   // Keep track of the current generation on the screen.
   timer++;
   gen = "Generation: " + timer.toString();
   document.getElementById("genCount").innerHTML = gen;
 }
+var tsrt = "";
+var drawed = false;
+var x = 0;
+var y = 0;
+var drawX;
+var drawY;
+
+function drawGridPos(e) {
+  // Get x and y position
+  x = e.pageX - e.currentTarget.offsetLeft;
+  y = e.pageY - e.currentTarget.offsetTop;
+
+  // Update background
+  drawX = Math.floor(x * gridCols / canvas.width);
+  drawY = Math.floor(y * gridRows / canvas.height);
+
+  grid[drawX][drawY] = 1;
+  drawScene(grid);
+
+  tsrt = `x:${drawX.toString()}, y:${drawY.toString()}`;
+  document.getElementById("genCount").innerHTML = tsrt;
+
+  drawX = 0;
+  drawY = 0;
+}
+
+function drawBtn() {
+  if (loopInterval != null) {
+    clearInterval(loopInterval);
+  }
+  document.getElementById("canvas").addEventListener("click", drawGridPos);
+  drawed = true;
+}
 
 function stop() {
+  if (drawed) {
+    drawX = 0;
+    drawY = 0;
+    document.getElementById("canvas").removeEventListener("click", drawGridPos);
+  }
   clearInterval(loopInterval);
 }
 
 function start() {
+  if (drawed) {
+    drawX = 0;
+    drawY = 0;
+    document.getElementById("canvas").removeEventListener("click", drawGridPos);
+  }
   if (loopInterval != null) {
     clearInterval(loopInterval);
   }
-  loopInterval = setInterval(main, 10);
+  loopInterval = setInterval(main, 50);
 }
 
 function reset() {
+  if (drawed) {
+    drawX = 0;
+    drawY = 0;
+    document.getElementById("canvas").removeEventListener("click", drawGridPos);
+  }
   grid = new2D_Array(gridCols, gridRows);
   for (let i = 0; i < gridCols; i++) {
     for (let j = 0; j < gridRows; j++) {
       grid[i][j] = Math.floor(Math.random() * 2);
     }
   }
-  // Draw the background and the grid
+  // Draw the background
   fillRect(bgRect, bgColor);
-  drawScene(grid); 
+  drawScene(grid);
 
   // Reset the counter for generations
   timer = 0;
