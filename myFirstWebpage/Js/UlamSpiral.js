@@ -23,13 +23,12 @@ const cX = canvas.width / 2;
 const cY = canvas.height / 2;
 
 // Spiral variables
-var step = 0;
-var dir = -1;
+var step = 1;
+var dir = 0;
 var stepsInDir = 1;
 var timesTurned = 0;
-var stepsToTake = 1;
 // Step size
-const dS = 30;
+const dS = 40;
 // Length of the spiral
 const spiralLength = 24;
 
@@ -42,7 +41,6 @@ var px = cX;
 var py = cY;
 
 // Circle constants
-const circleRad = 10;
 const circleColor = "#000000";
 
 // Variables for a timer that keeps track of the current step in the loop
@@ -63,7 +61,7 @@ function fillRect(r, color) {
 function drawCircle(x, y) {
   // Draw arc at x, y
   g.beginPath(); // Create a new line
-  g.arc(x, y, circleRad, 0, 2 * Math.PI, true); // Line is arc at x, y
+  g.arc(x, y, dS/4, 0, 2 * Math.PI, true); // Line is arc at x, y
 
   // Set color for the inside of the circle
   g.fillStyle = circleColor;
@@ -88,6 +86,16 @@ function drawLine(x1, y1, x2, y2) {
   g.stroke();
 }
 
+function isPrime(num) {
+  if(num == 1){return false;}
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if(num%i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 // Initialize program before entering loop
 // Set font for the text used
 g.font = "20px Georgia";
@@ -97,34 +105,29 @@ fillRect(bgRect, bgColor);
 
 // Enter game loop
 function main() {
-  // One step less left until we have to turn
-  stepsInDir--;
-  // Update direction
-  if(stepsInDir == 0){
-    dir++;
-    dir %= 4;
-  }
-
   // Calculate next position based on direction
   switch (dir) {
     case 0: // Move to the right
-      x = x + dS;
+      x += dS;
       break;
     case 1: // Move up
-      y = y - dS;
+      y -= dS;
       break;
     case 2: // Move to the left
-      x = x - dS;
+      x -= dS;
       break;
     case 3: // Move down
-      y = y + dS;
+      y += dS;
       break;
     default:
       break;
   }
 
-  // Draw a point on new position
-  drawCircle(x, y);
+  // Draw a point on new position if its prime
+  if (isPrime(step)) {
+    drawCircle(x, y);
+  }
+
   // Draw a line from new position to previous one
   drawLine(x, y, px, py);
 
@@ -133,30 +136,26 @@ function main() {
   py = y;
 
   // If its time to turn, do:
-  if (stepsInDir == 0) {
+  if (step % stepsInDir == 0) {
+    // Update direction
+    dir = (dir + 1) % 4;
     // Add one to the times we have turned
     timesTurned++;
-    // Reset the steps we need to take in a direction before turning
-    stepsInDir = stepsToTake;
-    // If we have already turned twice, 
+    // If we have already turned twice,
     if (timesTurned % 2 == 0) {
       // Make the steps we have to take in the new direction one unit longer
-      stepsToTake++;
+      stepsInDir++;
     }
   }
-  // Log current direction and step
-  console.log("dir: ", dir);
-
   // Go to next step
   step++;
-  console.log("step: ", step);
 
   // Keep track of the current step on the screen.
-  gen = "Step: " + (step+1).toString();
+  gen = "Step: " + step.toString();
   document.getElementById("genCount").innerHTML = gen;
 
   // If we are at the end of the spiral stop the loop
-  if (step >= spiralLength) {
+  if (step > spiralLength) {
     stopLoop();
   }
 }
@@ -168,8 +167,6 @@ function stopLoop() {
 
 // Start loop if it hasn't been started yet
 function start() {
-  // Draw circle at starting position
-  drawCircle(cX, cY);
   if (loopInterval != null) {
     clearInterval(loopInterval);
   }
@@ -189,7 +186,6 @@ function reset() {
   dir = -1;
   stepsInDir = 1;
   timesTurned = 0;
-  stepsToTake = 1;
 
   // Reset the counter for steps
   step = 0;
