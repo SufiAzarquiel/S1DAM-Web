@@ -61,7 +61,7 @@ function fillRect(r, color) {
 function drawCircle(x, y) {
   // Draw arc at x, y
   g.beginPath(); // Create a new line
-  g.arc(x, y, dS/4, 0, 2 * Math.PI, true); // Line is arc at x, y
+  g.arc(x, y, dS / 4, 0, 2 * Math.PI, true); // Line is arc at x, y
 
   // Set color for the inside of the circle
   g.fillStyle = circleColor;
@@ -87,9 +87,11 @@ function drawLine(x1, y1, x2, y2) {
 }
 
 function isPrime(num) {
-  if(num == 1){return false;}
+  if (num == 1) {
+    return false;
+  }
   for (let i = 2; i <= Math.sqrt(num); i++) {
-    if(num%i == 0) {
+    if (num % i == 0) {
       return false;
     }
   }
@@ -105,6 +107,18 @@ fillRect(bgRect, bgColor);
 
 // Enter game loop
 function main() {
+  // Draw a point on new position if its prime
+  if (isPrime(step)) {
+    drawCircle(x, y);
+  }
+
+  // Draw a line from new position to previous one
+  drawLine(x, y, px, py);
+
+  // Set previous point to be this point after completing the drawing step
+  px = x;
+  py = y;
+
   // Calculate next position based on direction
   switch (dir) {
     case 0: // Move to the right
@@ -122,18 +136,6 @@ function main() {
     default:
       break;
   }
-
-  // Draw a point on new position if its prime
-  if (isPrime(step)) {
-    drawCircle(x, y);
-  }
-
-  // Draw a line from new position to previous one
-  drawLine(x, y, px, py);
-
-  // Set previous point to be this point after completing the drawing step
-  px = x;
-  py = y;
 
   // If its time to turn, do:
   if (step % stepsInDir == 0) {
@@ -188,7 +190,7 @@ function reset() {
   timesTurned = 0;
 
   // Reset the counter for steps
-  step = 0;
+  step = 1;
   gen = "Step: " + step.toString();
   document.getElementById("genCount").innerHTML = gen;
 }
