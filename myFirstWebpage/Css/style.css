@@ -95,6 +95,11 @@ a {
   font-size: x-large;
 }
 
+#boldTxt {
+  height: 20px;
+  font-weight: bold;
+}
+
 .tab {
   margin-left: 40px;
 }
@@ -123,24 +128,24 @@ canvas {
 }
 
 #parrafos {
-  padding: 0 30px;
+  padding-left: 40px;
   font-size: large;
 }
 
 .ejemplo-div {
   background-color: lightcoral;
   margin: 20px;
-  padding: 20px;
+  padding: 40px;
   width: fit-content;
 }
 
 #enlaces {
-  padding: 0 40px;
+  padding-left: 40px;
   font-size: large;
 }
 
 #listas {
-  padding-left: 30px;
+  padding-left: 40px;
 }
 
 ul.ul-custom li {
@@ -183,6 +188,8 @@ ol.ol-custom-img li li li {
   color: red;
   font-weight: bold;
 }
+
+/* #tablas {} */
 
 table {
   margin: 0 auto;
@@ -286,9 +293,23 @@ table.Horario td {
 .Recreo {
   height: 20px;
 }
-#boldTxt {
-  height: 20px;
-  font-weight: bold;
+
+#form {
+  padding: 30px;
+}
+
+#form form {
+  padding: 50px;
+}
+
+form.registro {
+  padding: 20px;
+  margin: 0 auto;
+  width: 60%;
+}
+
+#form form textarea {
+  width: 90%;
 }
 
 footer {
