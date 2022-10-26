@@ -110,6 +110,9 @@ a {
 
 #home {
   text-align: center;
+  padding: 30px;
+  background-color: cadetblue;
+  border-radius: 0px 0px 0px 25px;
 }
 
 #home button {
@@ -128,8 +131,10 @@ canvas {
 }
 
 #parrafos {
-  padding-left: 40px;
   font-size: large;
+  padding: 30px;
+  background-color: peachpuff;
+  border-radius: 0px 0px 0px 25px;
 }
 
 .ejemplo-div {
@@ -189,7 +194,11 @@ ol.ol-custom-img li li li {
   font-weight: bold;
 }
 
-/* #tablas {} */
+#tablas {
+  padding: 30px;
+  background-color: cornflowerblue;
+  border-radius: 0px 0px 0px 25px;
+}
 
 table {
   margin: 0 auto;
@@ -296,10 +305,14 @@ table.Horario td {
 
 #form {
   padding: 30px;
+  background-color: #97db98;
+  border-radius: 0px 0px 0px 25px;
 }
 
 #form form {
   padding: 50px;
+  background-color: #c9a0c8;
+  border-radius: 25px;
 }
 
 form.registro {
@@ -310,6 +323,13 @@ form.registro {
 
 #form form textarea {
   width: 90%;
+}
+
+#multimedia {
+  padding: 20px 50px;
+  background-color: #bc7879;
+  border-radius: 0px 0px 0px 25px;
+  margin: 0 auto;
 }
 
 footer {
