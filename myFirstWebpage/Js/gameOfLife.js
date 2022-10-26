@@ -18,8 +18,8 @@ var gridRect = {
   w: resolution,
   h: resolution,
 };
-var gridCols = bgRect.w / resolution;
-var gridRows = bgRect.h / resolution;
+var gridCols = canvas.width / resolution;
+var gridRows = canvas.height / resolution;
 
 function fillRect(r, color) {
   g.fillStyle = color;

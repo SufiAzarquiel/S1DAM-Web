@@ -12,27 +12,36 @@ body {
 }
 
 .container {
-  background-color: #edbc64;
+  /* background-color: #edbc64; */
   /* Complementary to container color */
   width: 90%;
-  margin: 50px auto;
-  border-radius: 25px;
+  margin: 0 auto 50px auto;
+  border-radius:  0px 0px 25px 25px;
 }
 
 header {
   background-color: rgb(95, 173, 86);
   height: 150px;
-  border-radius: 25px 25px 0px 0px;
+  margin-bottom: 50px;
+  border-radius: 0px 0px 25px 25px;
+  border-style: solid;
+  border-color: aliceblue;
+  border-width: 3px;
   background-image: url("../Img/header.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-/* #principal {} */
+#principal {
+  border-radius: 25px;
+  padding-bottom: 25px;
+  background-color: #edbc64;
+}
 
 nav {
   width: 20%;
   float: left;
+  border-radius: 25px 0px 0px 0px;
 }
 
 nav ul {
@@ -57,9 +66,13 @@ nav ul li:hover {
   color: rgb(0, 0, 0);
 }
 
+nav ul a:first-of-type li{
+  border-radius: 25px 0px 0px 0px;
+}
+
 #content {
   background-color: cornflowerblue;
-  border-radius: 0px 0px 0px 25px;
+  border-radius: 0px 25px 0px 25px;
   width: 80%;
   float: right;
 }
@@ -110,6 +123,9 @@ a {
 
 #home {
   text-align: center;
+  padding-bottom: 20px;
+  background-color: cadetblue;
+  border-radius: 0px 25px 0px 25px;
 }
 
 #home button {
@@ -120,16 +136,21 @@ a {
 #genCount {
   margin: 10px auto 0px auto;
   padding: 0px;
+  font-size: larger;
 }
 
 canvas {
   margin: 10px;
   padding: 0px;
+  width: 90%;
+  height: 90%;
 }
 
 #parrafos {
-  padding-left: 40px;
   font-size: large;
+  padding: 30px;
+  background-color: peachpuff;
+  border-radius: 0px 25px 0px 25px;
 }
 
 .ejemplo-div {
@@ -189,7 +210,11 @@ ol.ol-custom-img li li li {
   font-weight: bold;
 }
 
-/* #tablas {} */
+#tablas {
+  padding: 30px;
+  background-color: cornflowerblue;
+  border-radius: 0px 25px 0px 25px;
+}
 
 table {
   margin: 0 auto;
@@ -296,10 +321,14 @@ table.Horario td {
 
 #form {
   padding: 30px;
+  background-color: #97db98;
+  border-radius: 0px 25px 0px 25px;
 }
 
 #form form {
   padding: 50px;
+  background-color: #c9a0c8;
+  border-radius: 25px;
 }
 
 form.registro {
@@ -310,6 +339,13 @@ form.registro {
 
 #form form textarea {
   width: 90%;
+}
+
+#multimedia {
+  padding: 20px 50px;
+  background-color: #bc7879;
+  border-radius: 0px 25px 0px 25px;
+  margin: 0 auto;
 }
 
 footer {
