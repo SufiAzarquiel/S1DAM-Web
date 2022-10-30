@@ -77,6 +77,10 @@ nav ul a:first-of-type li{
   float: right;
 }
 
+#content h1 {
+  text-align: center;
+}
+
 a {
   text-decoration: none;
   padding: 0;
@@ -123,7 +127,7 @@ a {
 
 #home {
   text-align: center;
-  padding-bottom: 20px;
+  padding: 20px 0 20px 0;
   background-color: cadetblue;
   border-radius: 0px 25px 0px 25px;
 }
@@ -148,7 +152,7 @@ canvas {
 
 #parrafos {
   font-size: large;
-  padding: 30px;
+  padding: 40px;
   background-color: peachpuff;
   border-radius: 0px 25px 0px 25px;
 }
@@ -211,7 +215,7 @@ ol.ol-custom-img li li li {
 }
 
 #tablas {
-  padding: 30px;
+  padding: 40px;
   background-color: cornflowerblue;
   border-radius: 0px 25px 0px 25px;
 }
@@ -320,29 +324,50 @@ table.Horario td {
 }
 
 #form {
-  padding: 30px;
+  padding: 40px;
   background-color: #97db98;
   border-radius: 0px 25px 0px 25px;
 }
 
 #form form {
-  padding: 50px;
+  padding: 25px;
   background-color: #c9a0c8;
   border-radius: 25px;
 }
 
 form.registro {
-  padding: 20px;
   margin: 0 auto;
   width: 60%;
 }
+
+form.login {
+  width: 30%;
+  margin: 0 auto;
+}
+
+#form input[type="submit"], #form input[type="button"]{
+  background-color: rgb(112, 163, 246);
+  color: white;
+  padding: 10px;
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  width: 40%;
+}
+
+#form input[type="button"] {margin-left: 5%;}
+
+#form input[type="submit"]:hover, #form input[type="button"]:hover {
+  opacity: 0.8;
+}
+
 
 #form form textarea {
   width: 90%;
 }
 
 #multimedia {
-  padding: 20px 50px;
+  padding: 20px 40px;
   background-color: #bc7879;
   border-radius: 0px 25px 0px 25px;
   margin: 0 auto;
