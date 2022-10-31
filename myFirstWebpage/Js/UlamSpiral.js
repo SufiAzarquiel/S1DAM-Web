@@ -9,7 +9,7 @@
 
 // Set canvas
 "use strict";
-var canvas = document.querySelector("canvas");
+var canvas = document.getElementById("canvas");
 const canSize = 640;
 canvas.width = canSize;
 canvas.height = canSize;
@@ -162,17 +162,17 @@ function main() {
 
   // If we are at the end of the spiral stop the loop
   if (step > spiralLength) {
-    stopLoop();
+    stopLoopUS();
   }
 }
 
 // Stop loop on any state
-function stopLoop() {
+function stopLoopUS() {
   clearInterval(loopInterval);
 }
 
 // Start loop if it hasn't been started yet
-function start() {
+function startUS() {
   if (loopInterval != null) {
     clearInterval(loopInterval);
   }
@@ -180,7 +180,7 @@ function start() {
 }
 
 // Reset loop state
-function reset() {
+function resetUS() {
   // Draw the background
   fillRect(bgRect, bgColor);
 

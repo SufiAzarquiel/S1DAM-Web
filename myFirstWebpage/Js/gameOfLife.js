@@ -1,5 +1,5 @@
 "use strict";
-var canvas = document.querySelector("canvas");
+var canvas = document.getElementById("canvas");
 canvas.width = 640;
 canvas.height = 640;
 
@@ -106,19 +106,19 @@ function main() {
 }
 var tsrt = "";
 var drawed = false;
-var x = 0;
-var y = 0;
+var mx = 0;
+var my = 0;
 var drawX;
 var drawY;
 
 function drawGridPos(e) {
   // Get x and y position
-  x = e.pageX - e.currentTarget.offsetLeft;
-  y = e.pageY - e.currentTarget.offsetTop;
+  mx = e.pageX - e.currentTarget.offsetLeft;
+  my = e.pageY - e.currentTarget.offsetTop;
 
   // Update background
-  drawX = Math.floor(x * gridCols / canvas.width);
-  drawY = Math.floor(y * gridRows / canvas.height);
+  drawX = Math.floor(mx * gridCols / canvas.width);
+  drawY = Math.floor(my * gridRows / canvas.height);
 
   grid[drawX][drawY] = 1;
   drawScene(grid);
@@ -130,7 +130,7 @@ function drawGridPos(e) {
   drawY = 0;
 }
 
-function drawBtn() {
+function drawBtnGoL() {
   if (loopInterval != null) {
     clearInterval(loopInterval);
   }
@@ -138,7 +138,7 @@ function drawBtn() {
   drawed = true;
 }
 
-function stop() {
+function stopGoL() {
   if (drawed) {
     drawX = 0;
     drawY = 0;
@@ -147,7 +147,7 @@ function stop() {
   clearInterval(loopInterval);
 }
 
-function start() {
+function startGoL() {
   if (drawed) {
     drawX = 0;
     drawY = 0;
@@ -159,7 +159,7 @@ function start() {
   loopInterval = setInterval(main, 50);
 }
 
-function reset() {
+function resetGoL() {
   if (drawed) {
     drawX = 0;
     drawY = 0;

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="Css/style.css" />
   </head>
 
-  <body>
+  <body onload="gameoflife()">
     <div class="container">
       <header></header>
       <div id="principal">
@@ -45,19 +45,31 @@
         </nav>
         <div id="content">
           <div id="home">
-            <button onclick="drawBtn()">Draw</button>
-            <button onclick="start()">Start</button>
-            <button onclick="stop()">Stop</button>
-            <button onclick="reset()">Reset</button>
-            <p id="genCount">Generation: 0</p>
+            <script src="Js/replace.js"></script>
+            <div id="game">
+            </div>
             <canvas id="canvas"></canvas>
-            <script src="/Js/gameOfLife.js"></script>
+            <div class="dropdown">
+              <button class="dropbtn">Cambiar de juego/demo</button>
+              <div id="myDropdown" class="dropdown-content">
+                <button class="hidebtn" onclick="gameoflife()">
+                  <a>The game of life</a>
+                </button>
+                <button class="hidebtn" onclick="ulamspiral()">
+                  <a>Ulam spiral</a>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="cb"></div>
       </div>
       <footer>
-        <li>Soufiane El Aouiti - S1DAM</li>
+        <li>
+          <a href="https://github.com/SufiAzarquiel" target="_blank"
+            >Soufiane El Aouiti - S1DAM</a
+          >
+        </li>
       </footer>
     </div>
   </body>
