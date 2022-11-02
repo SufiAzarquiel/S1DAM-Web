@@ -1,2 +1,2 @@
-# S1DAM
-All school and private Computer Science projects made in 2022 to 2023.
+# Sufi Web
+Proyectos web hechos en S1DAM.
