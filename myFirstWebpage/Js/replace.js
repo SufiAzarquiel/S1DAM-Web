@@ -19,7 +19,7 @@ function ulamspiral() {
   document.getElementById("game").appendChild(script);
   var mdiv = document.createElement("div");
   mdiv.innerHTML =
-    '<div class="ulamspiral"><button class="homebtn" onclick="startUS()">Start</button><button class="homebtn" onclick="stopLoopUS()">Stop</button><button class="homebtn" onclick="resetUS()">Reset</button><p id="genCount">Step: 1</p></div>';
+    '<div class="ulamspiral"><h1><a href="https://es.wikipedia.org/wiki/Espiral_de_Ulam"target="_blank">Ulam Spiral</a></h1><button class="homebtn" onclick="startUS()">Start</button><button class="homebtn" onclick="stopLoopUS()">Stop</button><button class="homebtn" onclick="resetUS()">Reset</button><p id="genCount">Step: 1</p></div>';
   document.getElementById("game").appendChild(mdiv);
   console.log("us");
 }
