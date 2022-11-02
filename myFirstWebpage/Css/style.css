@@ -158,6 +158,13 @@ button {
   clear: both;
 }
 
+#parrafos h1, #enlaces h1, 
+#listas h1, #tablas h1,
+#form h1, #multimedia h1,
+#formhtml5 h1 {
+  margin: 30px -40px;
+}
+
 #home {
   text-align: center;
   padding: 20px 0 20px 0;
@@ -435,7 +442,7 @@ table.Horario td {
 }
 
 #form {
-  padding: 40px;
+  padding: 20px 40px;
   background-color: #97db98;
   border-radius: 0px 25px 0px 25px;
 }
@@ -483,7 +490,7 @@ form.login {
 #formhtml5 {
   background-color: aquamarine;
   border-radius: 0px 25px 0px 25px;
-  padding: 20px 0;
+  padding: 20px 40px;
 }
 
 #formhtml5 form {
