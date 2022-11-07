@@ -10,7 +10,7 @@
 // Set canvas
 "use strict";
 var canvas = document.getElementById("canvas");
-const canSize = 640;
+let canSize = 640;
 canvas.width = canSize;
 canvas.height = canSize;
 var g = canvas.getContext("2d");
