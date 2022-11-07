@@ -10,7 +10,7 @@
 // Set canvas
 "use strict";
 var canvas = document.getElementById("canvas");
-let canSize = 640;
+var canSize = 640;
 canvas.width = canSize;
 canvas.height = canSize;
 var g = canvas.getContext("2d");
@@ -20,8 +20,8 @@ var bgColor = "#69fd9a";
 var bgRect = { x: 0, y: 0, w: canSize, h: canSize };
 
 // Set starting position at center of canvas
-const cX = canvas.width / 2;
-const cY = canvas.height / 2;
+var cX = canvas.width / 2;
+var cY = canvas.height / 2;
 
 // Spiral variables
 var step = 1;
@@ -29,12 +29,12 @@ var dir = 0;
 var stepsInDir = 1;
 var timesTurned = 0;
 // Step size
-const dS = 10;
+var dS = 10;
 // Columns and rows on the spiral
-const cols = canvas.width / dS;
-const rows = canvas.height / dS;
+var cols = canvas.width / dS;
+var rows = canvas.height / dS;
 // Length of the spiral, adjusting to canvas size
-const spiralLength = cols*rows - rows*2 + 1;
+var spiralLength = cols*rows - rows*2 + 1;
 
 // Current position on the spiral
 var x = cX;
@@ -45,13 +45,13 @@ var px = cX;
 var py = cY;
 
 // Circle constants
-const circleColor = "#000000";
+var circleColor = "#000000";
 
 // Variables for a timer that keeps track of the current step in the loop
 var gen = "";
 
 // Delay between every step on the loop
-const loopDelay = 1;
+var loopDelay = 1;
 // Main loop
 var loopInterval = null;
 
